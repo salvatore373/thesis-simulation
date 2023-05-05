@@ -1,0 +1,8 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+initialization.sh
+log_car.sh
+on_startup.sh
+sim_latest.tar.gz
+Dockerfile
+commands.txt
