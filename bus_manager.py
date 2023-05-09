@@ -7,6 +7,7 @@ class BusManager:
         # Initialize CAN Bus interface
         # can_interface = 'vcan0'  # virtual CAN Bus interface name
         # self.bus = can.interface.Bus(can_interface, bustype='socketcan')
+        # TODO: consider using ThreadSafeBus
         self.bus_send = can.interface.Bus('test', interface='virtual')
         self.bus_recv = can.interface.Bus('test', interface='virtual')
 
