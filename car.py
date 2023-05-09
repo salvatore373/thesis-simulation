@@ -1,4 +1,5 @@
 import time
+from datetime import datetime
 from enum import Enum
 
 from pyee.base import EventEmitter
@@ -123,7 +124,12 @@ class Car:
         # self.reach_speed()
 
         # The driver makes a hard brake (the brake pedal sensor detects a 100% press)
+        brake_time = datetime.now().timestamp()
         self.ev_emitter.emit(CarSensorsEvents.HARD_BRAKE, 100)
 
         # The car impacts against an obstacle (impact sensors detect a 65G impact force)
+        impact_time = datetime.now().timestamp()
         self.ev_emitter.emit(CarSensorsEvents.IMPACT, '65G')
+
+        print('brake time: ', brake_time)
+        print('impact time: ', impact_time)

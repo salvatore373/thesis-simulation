@@ -1,0 +1,15 @@
+Timestamp: 1683648663.786378        ID: 0053    S Rx                DL:  6    33 31 33 30 33 30           '313030'    Channel: test
+Timestamp: 1683648663.786408        ID: 0000    S Rx                DL:  6    34 34 36 66 35 33           '446f53'    Channel: test
+brake time:  1683648663.786064
+impact time:  1683648663.786396
+Timestamp: 1683648663.786420        ID: 0000    S Rx                DL:  6    34 34 36 66 35 33           '446f53'    Channel: test
+Timestamp: 1683648663.786430        ID: 0000    S Rx                DL:  6    34 34 36 66 35 33           '446f53'    Channel: test
+Timestamp: 1683648663.786439        ID: 0000    S Rx                DL:  6    34 34 36 66 35 33           '446f53'    Channel: test
+
+...
+
+Timestamp: 1683648668.786390        ID: 0000    S Rx                DL:  6    34 34 36 66 35 33           '446f53'    Channel: test
+Timestamp: 1683648668.786398        ID: 0000    S Rx                DL:  6    34 34 36 66 35 33           '446f53'    Channel: test
+Timestamp: 1683648668.786506        ID: 0010    S Rx                DL:  4    33 36 33 35                 '3635'    Channel: test
+Timestamp: 1683648668.786518        ID: 0008    S Rx                DL: 16    34 34 34 35 35 30 34 63 34 66 35 39 34 35 34 34    '4445504c4f594544'    Channel: test
+Timestamp: 1683648668.786525        ID: 0009    S Rx                DL: 10    34 32 34 63 34 66 34 33 34 62    '424c4f434b'    Channel: test
