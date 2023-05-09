@@ -64,7 +64,7 @@ class BaseECU(ABC):
         The function to execute in a separate thread
         :return:
         """
-        self.listen_to_bus(self.__handle_overload_recv)
+        self.listen_to_bus(self._handle_overload_recv)
         self._start_operations()
 
     def start(self):
@@ -88,7 +88,7 @@ class BaseECU(ABC):
         self.send_msg(OVERLOAD_ID, 'overload')
         self.overloaded = True
 
-    def __handle_overload_recv(self, msg: can.Message):
+    def _handle_overload_recv(self, msg: can.Message):
         """
         Handles the overload frame reception of this ECU from the bus
         :param msg: The message received from the bus
