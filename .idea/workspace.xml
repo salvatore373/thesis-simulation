@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a47f49e8-9d3b-49fb-ba7b-4a16021acb00" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ecus/attcker.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/car.py" beforeDir="false" afterPath="$PROJECT_DIR$/car.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecus/attcker.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecus/attcker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecus/base_ecu.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecus/base_ecu.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecus/fake.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecus/fake.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -85,7 +86,7 @@
       <workItem from="1683300197770" duration="693000" />
       <workItem from="1683301000843" duration="896000" />
       <workItem from="1683312428344" duration="15000" />
-      <workItem from="1683629491521" duration="8431000" />
+      <workItem from="1683629491521" duration="10915000" />
     </task>
     <servers />
   </component>
@@ -94,12 +95,45 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/ecus/base_ecu.py</url>
+          <line>96</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <condition expression="msg.arbitration_id == OVERLOAD_ID" language="Python" />
+          <url>file://$PROJECT_DIR$/ecus/base_ecu.py</url>
+          <line>95</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/ecus/base_ecu.py</url>
+          <line>87</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/ecus/base_ecu.py</url>
+          <line>88</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/ecus/attcker.py</url>
+          <line>52</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>44</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-defaults>
         <breakpoint type="python-line" />
       </breakpoints-defaults>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/thesis_simulation$main.coverage" NAME="main Coverage Results" MODIFIED="1683648663637" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/thesis_simulation$main.coverage" NAME="main Coverage Results" MODIFIED="1683652927704" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

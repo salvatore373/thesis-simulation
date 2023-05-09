@@ -1,26 +1,30 @@
+import sys
 import time
+from contextlib import redirect_stdout
 
 from bus_manager import BusManager
 from car import Car
 from ecus.abs import AntiLockBrakingSystem
 from ecus.acm import AirbagControlModule
+from ecus.attcker import AttackerECU, AttackTypes
+from ecus.bcm import BodyControlModule
 from ecus.ecm import EngineControlModule
+from ecus.fake import FakeECU
+from ecus.radio_ecu import RadioECU
 from ecus.tcm import TransmissionControlModule
 
 
-def main():
-    bus = BusManager()
-    bus.show_bus()
-
-    # Start all the ECUs
-    # ecu = FakeECU(bus)
-    # ecu.start()
-    # bcm = BodyControlModule(bus)
-    # bcm.start()
-    # radio_ecu = RadioECU(bus)
-    # radio_ecu.start()
-    # tcm_ecu = TransmissionControlModule(bus)
-    # tcm_ecu.start()
+def start_all_ecus(bus):
+    """
+    Starts and attaches to the bus all the available ECUs
+    :param bus: The bus where the ECUs should be attached
+    """
+    bcm = BodyControlModule(bus)
+    bcm.start()
+    radio_ecu = RadioECU(bus)
+    radio_ecu.start()
+    tcm_ecu = TransmissionControlModule(bus)
+    tcm_ecu.start()
     ecm_ecu = EngineControlModule(bus)
     ecm_ecu.start()
     acm_ecu = AirbagControlModule(bus)
@@ -28,14 +32,49 @@ def main():
     abs_ecu = AntiLockBrakingSystem(bus)
     abs_ecu.start()
 
-    # Initialize a Car object
-    car = Car.get_instance()
-    # Unlock the car
-    # car.remote_locking(False)
-    # car.reach_speed()
+
+# Simulates a Freeze Doom Loop attack during the car's progression from 0km to a high speed
+def simulate_fdm_during_progression(bus, car):
+    sys.stdout = open('fdm-log.txt', 'w')
+    bus.show_bus()
+
+    # Start all the ECUs
+    start_all_ecus(bus)
+
+    # Attach the attacker ECU to the bus (when the car is already started)
+    att_ecu = AttackerECU(bus, AttackTypes.FreezeDoomLoop)
+    att_ecu.start()
+
+    # Simulate a car speed progression
+    car.reach_speed()
+
+
+
+# Simulates a DoS attack during a car's impact
+def simulate_dos_on_impact(bus, car):
+    sys.stdout = open('dos-log.txt', 'w')
+    bus.show_bus()
+
+    # Attach the attacker ECU to the bus
+    att_ecu = AttackerECU(bus, AttackTypes.DoSOnImpact)
+    att_ecu.start()
+
+    # Start all the ECUs
+    start_all_ecus(bus)
+
+    # Simulate a car impact
     car.impact()
 
-    time.sleep(2)  # DEBUG
+
+def main():
+    # Initialize the Bus and Car objects
+    car = Car.get_instance()
+    bus = BusManager()
+
+    # simulate_dos_on_impact(bus, car) # stop after 7 sec
+    simulate_fdm_during_progression(bus, car)
+
+    time.sleep(20)  # DEBUG
     bus.shutdown()
 
 

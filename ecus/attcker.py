@@ -1,6 +1,6 @@
+import time
 from datetime import datetime, timedelta
 from enum import Enum
-from threading import Timer
 
 from car import Car, CarSensorsEvents
 from ecus.base_ecu import BaseECU
@@ -22,7 +22,7 @@ class AttackerECU(BaseECU):
         elif self.attack_type == AttackTypes.Replay:
             pass
         elif self.attack_type == AttackTypes.FreezeDoomLoop:
-            pass
+            self._perform_freeze_doom_loop()
 
     def __init__(self, bus, attack_type: AttackTypes):
         super().__init__(bus)
@@ -30,8 +30,8 @@ class AttackerECU(BaseECU):
 
     def _perform_dos(self):
         """
-        When the car detects and impact performs a DoS attack against the bus sending
-        many messages of maximum priority. The bus will stay blocked for 5 seconds.
+        Performs a DoS attack against the bus sending many messages of maximum priority.
+        The bus will stay blocked for 5 seconds.
         """
         start = datetime.now()
         while datetime.now() - start <= timedelta(seconds=5):
@@ -41,4 +41,14 @@ class AttackerECU(BaseECU):
         pass
 
     def _perform_freeze_doom_loop(self):
-        pass
+        """
+        Performs a Freeze Doom Loop attack on the bus sending many Overload frames.
+        The bus is frozen for 5 seconds.
+        """
+        # Wait 5 seconds before starting the attack
+        time.sleep(5)
+
+        start = datetime.now()
+        while datetime.now() - start <= timedelta(seconds=5):
+            self.send_overload()
+        print("end")

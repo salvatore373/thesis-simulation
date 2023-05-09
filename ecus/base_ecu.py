@@ -12,7 +12,7 @@ from pyee import EventEmitter
 from bus_manager import BusManager
 
 # The ID of the overload frame
-OVERLOAD_ID = 0x0
+OVERLOAD_ID = 0x3
 # The name of the event to communicate the end of the overload state of the ECU
 OVERLOAD_OVER = 'OVLD END'
 

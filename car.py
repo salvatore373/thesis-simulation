@@ -117,7 +117,7 @@ class Car:
         While the car is moving at max speed impacts an obstacle
         """
 
-        # DEBUG: replace with reach_speed()
+        # TODO DEBUG: replace with reach_speed()
         self.gear = 7
         self.speed = 100
         self.rpm = 700.0
