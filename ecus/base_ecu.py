@@ -43,7 +43,7 @@ class BaseECU(ABC):
             self.ev_emitter.once(OVERLOAD_OVER, lambda: self.send_msg(msg_id, data))
 
         # Convert the given data in hexadecimal format
-        if type(data) == int:
+        if type(data) == int or type(data) == float:
             data = str(data)
         if type(data) == str:
             data = codecs.encode(data.encode(), 'hex')
