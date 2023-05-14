@@ -8,8 +8,10 @@ class BusManager:
         # can_interface = 'vcan0'  # virtual CAN Bus interface name
         # self.bus = can.interface.Bus(can_interface, bustype='socketcan')
         # TODO: consider using ThreadSafeBus
-        self.bus_send = can.interface.Bus('test', interface='virtual')
-        self.bus_recv = can.interface.Bus('test', interface='virtual')
+        # self.bus_send = can.interface.Bus('test', interface='virtual')
+        # self.bus_recv = can.interface.Bus('test', interface='virtual')
+        self.bus_send = can.ThreadSafeBus('test', interface='virtual')
+        self.bus_recv = can.ThreadSafeBus('test', interface='virtual')
 
         self.notifier = can.Notifier(self.bus_recv, [])
 
@@ -26,6 +28,13 @@ class BusManager:
         :param listener: The listener to add
         """
         self.notifier.add_listener(listener)
+
+    def remove_listener(self, listener: can.Listener):
+        """
+        Removes the given listener from the list of bus listeners.
+        :param listener: The listener to remove
+        """
+        self.notifier.remove_listener(listener)
 
     # TODO: keep or leave?
     # def register_ecu(self, id_min: int, id_max: int, ecu_id: string):

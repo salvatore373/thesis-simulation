@@ -72,14 +72,23 @@ class BaseECU(ABC):
         ecu_thread = Thread(target=self._start_thread_exec)
         ecu_thread.start()
 
-    def listen_to_bus(self, callback: Callable):
+    def listen_to_bus(self, callback: Callable) -> can.Listener:
         """
         Start listening to the bus. For each new message in the bus, the callback will be called with
         that message as input.
         :param callback: The function to call when a new message is trasmitted in the bus.
+        :return The just created Listener object.
         """
         listener = BaseECUListener(callback)
         self.bus.listen(listener)
+        return listener
+
+    def stop_listening(self, listener: can.Listener):
+        """
+        Removes the given listener from the bus listeners
+        :param listener: The listener to remove from the bus
+        """
+        self.bus.remove_listener(listener)
 
     def send_overload(self):
         """

@@ -33,8 +33,12 @@ def start_all_ecus(bus):
     abs_ecu.start()
 
 
-# Simulates a Freeze Doom Loop attack during the car's progression from 0km to a high speed
 def simulate_fdm_during_progression(bus, car):
+    """
+    Simulates a Freeze Doom Loop attack during the car's progression from 0km to a high speed.
+    :param bus: The bus where the attack has to be performed
+    :param car: The car where the attack has to be performed
+    """
     sys.stdout = open('fdm-log.txt', 'w')
     bus.show_bus()
 
@@ -49,9 +53,12 @@ def simulate_fdm_during_progression(bus, car):
     car.reach_speed()
 
 
-
-# Simulates a DoS attack during a car's impact
 def simulate_dos_on_impact(bus, car):
+    """
+    Simulates a DoS attack during a car's impact.
+    :param bus: The bus where the attack has to be performed
+    :param car: The car where the attack has to be performed
+    """
     sys.stdout = open('dos-log.txt', 'w')
     bus.show_bus()
 
@@ -66,15 +73,37 @@ def simulate_dos_on_impact(bus, car):
     car.impact()
 
 
+def simulate_unlocking_replay(bus, car):
+    """
+    Simulates a Replay attack to unlock the car after it has been locked
+    :param bus: The bus where the attack has to be performed
+    :param car: The car where the attack has to be performed
+    """
+    sys.stdout = open('rep-log.txt', 'w')
+    bus.show_bus()
+
+    # Attach the attacker ECU to the bus
+    att_ecu = AttackerECU(bus, AttackTypes.ReplayToUnlock)
+    att_ecu.start()
+
+    # Start all the ECUs
+    start_all_ecus(bus)
+
+    # Simulate car locking and unlocking
+    car.remote_locking(False)
+    car.remote_locking(True)
+
+
 def main():
     # Initialize the Bus and Car objects
     car = Car.get_instance()
     bus = BusManager()
 
     # simulate_dos_on_impact(bus, car) # stop after 7 sec
-    simulate_fdm_during_progression(bus, car)
+    # simulate_fdm_during_progression(bus, car) # stop after 20 sec
+    simulate_unlocking_replay(bus, car)  # stop after 10 sec
 
-    time.sleep(20)  # DEBUG
+    time.sleep(15)  # DEBUG
     bus.shutdown()
 
 

@@ -1,0 +1,15 @@
+Timestamp: 1684082162.975547        ID: 0402    S Rx                DL: 16    35 35 34 65 34 63 34 66 34 33 34 62 34 35 34 34    '554e4c4f434b4544'    Channel: test
+Timestamp: 1684082162.975572        ID: 0401    S Rx                DL: 12    34 63 34 66 34 33 34 62 34 35 34 34    '4c4f434b4544'    Channel: test
+Timestamp: 1684082162.975672        ID: 0502    S Rx                DL: 16    35 35 34 65 34 63 34 66 34 33 34 62 34 35 34 34    '554e4c4f434b4544'    Channel: test
+Timestamp: 1684082162.975719        ID: 0501    S Rx                DL: 12    34 63 34 66 34 33 34 62 34 35 34 34    '4c4f434b4544'    Channel: test
+
+
+Replay Success
+
+
+Timestamp: 1684082167.980945        ID: 0402    S Rx                DL: 16    35 35 34 65 34 63 34 66 34 33 34 62 34 35 34 34    '554e4c4f434b4544'    Channel: test
+Timestamp: 1684082167.981475        ID: 0502    S Rx                DL: 16    35 35 34 65 34 63 34 66 34 33 34 62 34 35 34 34    '554e4c4f434b4544'    Channel: test
+
+
+554e4c4f434b4544 -> UNLOCKED
+4c4f434b4544     -> LOCKED

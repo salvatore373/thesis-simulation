@@ -5,3 +5,5 @@ initialization.sh
 Dockerfile
 log_car.txt
 on_startup.sh
+dos-log.txt
+fdm-log.txt
