@@ -79,7 +79,7 @@ def simulate_unlocking_replay(bus, car):
     :param bus: The bus where the attack has to be performed
     :param car: The car where the attack has to be performed
     """
-    sys.stdout = open('rep-log.txt', 'w')
+    # sys.stdout = open('rep-log.txt', 'w')
     bus.show_bus()
 
     # Attach the attacker ECU to the bus
@@ -89,7 +89,7 @@ def simulate_unlocking_replay(bus, car):
     # Start all the ECUs
     start_all_ecus(bus)
 
-    # Simulate car locking and unlocking
+    # Simulate car unlocking and locking
     car.remote_locking(False)
     car.remote_locking(True)
 

