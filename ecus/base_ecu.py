@@ -1,5 +1,4 @@
 import codecs
-import string
 import time
 from abc import abstractmethod, ABC
 from threading import Thread
@@ -7,14 +6,11 @@ from typing import Callable, Any, Union
 
 import can
 from can import Message
-from pyee import EventEmitter
 
 from bus_manager import BusManager
 
 # The ID of the overload frame
 OVERLOAD_ID = 0x3
-# The name of the event to communicate the end of the overload state of the ECU
-OVERLOAD_OVER = 'OVLD END'
 
 
 # The ECUs superclass that implements all the base functionalities
@@ -29,8 +25,6 @@ class BaseECU(ABC):
 
         # Whether the ECU is under the effect of an Overload frame received from the bus
         self.overloaded = False
-        # The event emitter used in this ECU to make the many parts communicate via events
-        self.ev_emitter = EventEmitter()
 
     def send_msg(self, msg_id, data: Union[str, int]):
         """
@@ -38,9 +32,9 @@ class BaseECU(ABC):
         :param msg_id: The ID of the message to send
         :param data: The content of the Data field of the message to send
         """
-        # Delay sending of messages if the ECU is overloaded
+        # Prevent the sending of messages if the ECU is overloaded
         if self.overloaded:
-            self.ev_emitter.once(OVERLOAD_OVER, lambda: self.send_msg(msg_id, data))
+            return
 
         # Convert the given data in hexadecimal format
         if type(data) == int or type(data) == float:
@@ -105,7 +99,6 @@ class BaseECU(ABC):
         if msg.arbitration_id == OVERLOAD_ID and not self.overloaded:
             self.overloaded = True
             time.sleep(1)  # Make the overload effect noticeable blocking the ECU for 1 second
-            self.ev_emitter.emit(OVERLOAD_OVER)
 
 
 class BaseECUListener(can.Listener):
