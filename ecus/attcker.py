@@ -140,8 +140,8 @@ class AttackerECU(BaseECU):
         Performs a Freeze Doom Loop attack on the bus sending many Overload frames.
         The bus is frozen for 5 seconds.
         """
-        # Wait 5 seconds before starting the attack
-        time.sleep(5)
+        # Wait 3 seconds before starting the attack
+        time.sleep(3)
 
         start = datetime.now()
         while datetime.now() - start <= timedelta(seconds=5):
