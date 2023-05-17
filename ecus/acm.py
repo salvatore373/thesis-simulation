@@ -1,4 +1,3 @@
-import codecs
 import re
 
 import car as car_module
@@ -9,7 +8,7 @@ SEATBELT_STATUS = 0x9
 IMPACT_SENSOR_READ = 0x10
 
 
-# TODO: fill comment
+# The Airbag-Control Module ECU
 class AirbagControlModule(BaseECU):
     def __init__(self, bus):
         super().__init__(bus)

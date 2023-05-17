@@ -6,7 +6,7 @@ CAR_LOCKED = 0X501
 CAR_UNLOCKED = 0X502
 
 
-# TODO: fill comment
+# The Body-Control Module ECU
 class BodyControlModule(BaseECU):
     def __init__(self, bus: BusManager):
         super().__init__(bus)

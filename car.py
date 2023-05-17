@@ -106,7 +106,6 @@ class Car:
             # The sensor sends the current speed to the interested ECUs
             self.ev_emitter.emit(CarSensorsEvents.RPM, self.rpm)
 
-            # if t % 100 == 0: # DEBUG
             print('\nspeed: ', self.speed, ' RPM: ', self.rpm, ' gear: ', self.gear, '\n')
 
             # Slow up the process to make it visible
@@ -117,11 +116,7 @@ class Car:
         While the car is moving at max speed impacts an obstacle
         """
 
-        # TODO DEBUG: replace with reach_speed()
-        self.gear = 7
-        self.speed = 100
-        self.rpm = 700.0
-        # self.reach_speed()
+        self.reach_speed()
 
         # The driver makes a hard brake (the brake pedal sensor detects a 100% press)
         brake_time = datetime.now().timestamp()

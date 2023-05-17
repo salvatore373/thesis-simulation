@@ -8,7 +8,7 @@ from ecus.ecm import BRAKE_PERCENTAGE
 ABS_SYSTEM_STATUS = 0x11
 
 
-# TODO: fill comment
+# Anti-lock Breaking System Module
 class AntiLockBrakingSystem(BaseECU):
     def __init__(self, bus):
         super().__init__(bus)

@@ -1,6 +1,5 @@
 import sys
 import time
-from contextlib import redirect_stdout
 
 from bus_manager import BusManager
 from car import Car
@@ -9,7 +8,6 @@ from ecus.acm import AirbagControlModule
 from ecus.attcker import AttackerECU, AttackTypes
 from ecus.bcm import BodyControlModule
 from ecus.ecm import EngineControlModule
-from ecus.fake import FakeECU
 from ecus.radio_ecu import RadioECU
 from ecus.tcm import TransmissionControlModule
 
@@ -33,9 +31,9 @@ def start_all_ecus(bus):
     abs_ecu.start()
 
 
-def simulate_fdm_during_progression(bus, car):
+def simulate_fdm_during_acceleration(bus, car):
     """
-    Simulates a Freeze Doom Loop attack during the car's progression from 0km to a high speed.
+    Simulates a Freeze Doom Loop attack during the car's acceleration from 0km to a high speed.
     :param bus: The bus where the attack has to be performed
     :param car: The car where the attack has to be performed
     """
@@ -49,7 +47,7 @@ def simulate_fdm_during_progression(bus, car):
     att_ecu = AttackerECU(bus, AttackTypes.FreezeDoomLoop)
     att_ecu.start()
 
-    # Simulate a car speed progression
+    # Simulate a car speed acceleration
     car.reach_speed()
 
 
@@ -79,7 +77,7 @@ def simulate_unlocking_replay(bus, car):
     :param bus: The bus where the attack has to be performed
     :param car: The car where the attack has to be performed
     """
-    # sys.stdout = open('rep-log.txt', 'w')
+    sys.stdout = open('rep-log.txt', 'w')
     bus.show_bus()
 
     # Attach the attacker ECU to the bus
@@ -94,18 +92,25 @@ def simulate_unlocking_replay(bus, car):
     car.remote_locking(True)
 
 
-def main():
+def simulate():
     # Initialize the Bus and Car objects
     car = Car.get_instance()
     bus = BusManager()
 
-    # simulate_dos_on_impact(bus, car) # stop after 7 sec
-    # simulate_fdm_during_progression(bus, car) # stop after 20 sec
-    simulate_unlocking_replay(bus, car)  # stop after 10 sec
+    # todo add licence
 
-    time.sleep(15)  # DEBUG
+    if sys.argv[1] == 'dos':
+        simulate_dos_on_impact(bus, car)
+        time.sleep(7)
+    elif sys.argv[1] == 'fdm':
+        simulate_fdm_during_acceleration(bus, car)
+        time.sleep(15)
+    elif sys.argv[1] == 'replay':
+        simulate_unlocking_replay(bus, car)
+        time.sleep(10)
+
     bus.shutdown()
 
 
 if __name__ == '__main__':
-    main()
+    simulate()

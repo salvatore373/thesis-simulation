@@ -1,14 +1,13 @@
-from bus_manager import BusManager
 import car as car_module
+from bus_manager import BusManager
 from ecus.base_ecu import BaseECU
-import codecs
 
 RPM = 0x51
 SPEED = 0x52
 BRAKE_PERCENTAGE = 0x53
 
 
-# TODO: fill comment
+# The Engine-Control Module ECU
 class EngineControlModule(BaseECU):
     def __init__(self, bus: BusManager):
         super().__init__(bus)

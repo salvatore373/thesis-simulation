@@ -1,6 +1,5 @@
 import codecs
 import re
-import sys
 import threading
 import time
 from datetime import datetime, timedelta
@@ -106,11 +105,6 @@ class AttackerECU(BaseECU):
         """
         Performs a Replay attack to unlock the car after it has been locked.
         """
-        # debug delete comments
-        # analyze traffic searching for 'lock' in data and replay the message with same ID and data
-        # if another message is read on the bus (that will come from the BCM) that contains 'unlock', replay attack
-        # is successful.
-
         # Initialize the event used to know when the message to replay is found
         self.replay_result = threading.Event()
         # Start looking for the message to replay

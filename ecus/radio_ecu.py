@@ -6,7 +6,7 @@ LOCKING = 0x401
 UNLOCKING = 0x402
 
 
-# TODO: fill comment
+# The RadioECU module
 class RadioECU(BaseECU):
     def __init__(self, bus: BusManager):
         super().__init__(bus)
