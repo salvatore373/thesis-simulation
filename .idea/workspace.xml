@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a47f49e8-9d3b-49fb-ba7b-4a16021acb00" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LICENSE.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecu_simple_sim.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +94,8 @@
       <workItem from="1684167890494" duration="130000" />
       <workItem from="1684234425739" duration="5321000" />
       <workItem from="1684316619974" duration="1298000" />
-      <workItem from="1684331335582" duration="6721000" />
+      <workItem from="1684331335582" duration="6884000" />
+      <workItem from="1684339344431" duration="692000" />
     </task>
     <servers />
   </component>
