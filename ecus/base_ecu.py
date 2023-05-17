@@ -99,6 +99,7 @@ class BaseECU(ABC):
         if msg.arbitration_id == OVERLOAD_ID and not self.overloaded:
             self.overloaded = True
             time.sleep(1)  # Make the overload effect noticeable blocking the ECU for 1 second
+            self.overloaded = False
 
 
 class BaseECUListener(can.Listener):
