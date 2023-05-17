@@ -97,8 +97,6 @@ def simulate():
     car = Car.get_instance()
     bus = BusManager()
 
-    # todo add licence
-
     if sys.argv[1] == 'dos':
         simulate_dos_on_impact(bus, car)
         time.sleep(7)
