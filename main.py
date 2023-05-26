@@ -11,6 +11,9 @@ from ecus.ecm import EngineControlModule
 from ecus.radio_ecu import RadioECU
 from ecus.tcm import TransmissionControlModule
 
+# Whether the stdout of the execution should be on a file or on log console
+log_on_file = True
+
 
 def start_all_ecus(bus):
     """
@@ -37,7 +40,8 @@ def simulate_fdm_during_acceleration(bus, car):
     :param bus: The bus where the attack has to be performed
     :param car: The car where the attack has to be performed
     """
-    sys.stdout = open('fdm-log.txt', 'w')
+    if log_on_file:
+        sys.stdout = open('fdm-log.txt', 'w')
     bus.show_bus()
 
     # Start all the ECUs
@@ -57,7 +61,8 @@ def simulate_dos_on_impact(bus, car):
     :param bus: The bus where the attack has to be performed
     :param car: The car where the attack has to be performed
     """
-    sys.stdout = open('dos-log.txt', 'w')
+    if log_on_file:
+        sys.stdout = open('dos-log.txt', 'w')
     bus.show_bus()
 
     # Attach the attacker ECU to the bus
@@ -77,7 +82,8 @@ def simulate_unlocking_replay(bus, car):
     :param bus: The bus where the attack has to be performed
     :param car: The car where the attack has to be performed
     """
-    sys.stdout = open('rep-log.txt', 'w')
+    if log_on_file:
+        sys.stdout = open('rep-log.txt', 'w')
     bus.show_bus()
 
     # Attach the attacker ECU to the bus
@@ -97,6 +103,10 @@ def simulate():
     car = Car.get_instance()
     bus = BusManager()
 
+    if sys.argv[2] == 'false':
+        global log_on_file
+        log_on_file = False
+
     if sys.argv[1] == 'dos':
         simulate_dos_on_impact(bus, car)
         time.sleep(7)
@@ -111,4 +121,5 @@ def simulate():
 
 
 if __name__ == '__main__':
+    # The command to simulate should be in the form python3 main.py [attack_id] [true|false]
     simulate()

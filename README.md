@@ -17,3 +17,26 @@ precedenza. Una ECU intrusa nel sistema (implementata in `ecus/attacker.py`) ese
 
 Un'analisi più dettagliata della simulazione, insieme alla discussione sulle conseguenze degli attacchi effettuati,
 è disponibile nella relazione.
+
+### Come eseguire la simulazione
+Si può scegliere quale attacco simulare passando l'argomento appropriato da linea di comando.
+
+Per simulare l'attacco DoS:
+`python3 main.py dos true|false`
+
+Per simulare l'attacco Replay:
+`python3 main.py replay true|false`
+
+Per simulare l'attacco Freeze Doom Loop:
+`python3 main.py fdm true|false`
+
+L'ultimo argomento indica se stampare o meno l'output su file. Se non specificato o se impostato a `true` lo `stdout`
+sarà un file diverso per ogni tipo di attacco, altrimenti sarà la console. 
+
+<br>Alternativamente, è possibile eseguire la simulazione all'interno di un'immagine Docker, con i seguenti comandi.
+
+Creare l'immagine con:<br>
+`docker build --tag thesis-simulation .`
+
+Eseguire l'immagine, specificando il tipo di attacco da eseguire da `false` per avere l'output su console:<br>
+`docker run --rm thesis-simulation [tipo-attacco] false`

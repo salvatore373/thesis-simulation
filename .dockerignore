@@ -1,0 +1,12 @@
+.gitattributes
+.gitignore
+commands.txt
+dos-log.txt
+dos-log-compressed.txt
+fdm-log.txt
+fdm-log-compressed.txt
+initialization.sh
+log_car.txt
+on_startup.sh
+rep-log.txt
+sim_latest.tar.gz
