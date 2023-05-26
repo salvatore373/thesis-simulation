@@ -7,3 +7,10 @@ log_car.txt
 on_startup.sh
 dos-log.txt
 fdm-log.txt
+.DS_Store
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/misc.xml
+.idea/vcs.xml
+.idea/workspace.xml
+__pycache__/bus_manager.cpython-311.pyc
+.idea/workspace.xml
